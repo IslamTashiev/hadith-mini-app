@@ -6,7 +6,7 @@ const App: FC = () => {
     <div className="container">
       <h1 className="title">Давайте составим ваш дуа</h1>
       <Input />
-      <button>Продолжить</button>
+      <button className="btn">Продолжить</button>
     </div>
   );
 };
