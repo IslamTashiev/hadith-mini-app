@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [user, setUser] = useState<TelegramWebAppUser | null>(null);
+  const [webApp, setWebApp] = useState<TelegramWebApp | null>(null);
   useEffect(() => {
     if (window.Telegram?.WebApp) {
       const { WebApp } = window.Telegram;
-
+      setWebApp(WebApp);
       // Инициализация WebApp
       WebApp.ready();
 
@@ -31,6 +32,7 @@ function App() {
     <div>
       <h1>Welcome to Telegram Mini App!</h1>
       {JSON.stringify(user, null, 2)}
+      {JSON.stringify(webApp, null, 2)}
     </div>
   );
 }
