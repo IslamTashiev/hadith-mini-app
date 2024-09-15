@@ -1,40 +1,40 @@
-import { useEffect, useState } from "react";
+import { Section, Cell, Image, List } from "@telegram-apps/telegram-ui";
+import type { FC } from "react";
 
-function App() {
-  const [user, setUser] = useState<TelegramWebAppUser | null>(null);
-  const [webApp, setWebApp] = useState<TelegramWebApp | null>(null);
-  useEffect(() => {
-    if (window.Telegram?.WebApp) {
-      const { WebApp } = window.Telegram;
-      setWebApp(WebApp);
-      // Инициализация WebApp
-      WebApp.ready();
+import tonSvg from "./ton.svg";
 
-      // Установка фона и заголовка
-      WebApp.setBackgroundColor("#ffffff");
-      WebApp.setHeaderColor("theme");
-
-      // Получение данных пользователя
-      const user = WebApp.initDataUnsafe?.user;
-      setUser(user);
-      console.log("Current user:", user);
-
-      // Показать основной текст
-      if (user) {
-        alert(`Hello, ${user.first_name}!`);
-      }
-    } else {
-      console.error("Telegram WebApp is not available.");
-    }
-  }, []);
-
+const App: FC = () => {
   return (
-    <div>
-      <h1>Welcome to Telegram Mini App!</h1>
-      {JSON.stringify(user, null, 2)}
-      {JSON.stringify(webApp, null, 2)}
-    </div>
+    <List>
+      <Section
+        header="Features"
+        footer="You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects"
+      >
+        <a href="/ton-connect">
+          <Cell
+            before={<Image src={tonSvg} style={{ backgroundColor: "#007AFF" }} />}
+            subtitle="Connect your TON wallet"
+          >
+            TON Connect
+          </Cell>
+        </a>
+      </Section>
+      <Section
+        header="Application Launch Data"
+        footer="These pages help developer to learn more about current launch information"
+      >
+        <a href="/init-data">
+          <Cell subtitle="User data, chat information, technical data">Init Data</Cell>
+        </a>
+        <a href="/launch-params">
+          <Cell subtitle="Platform identifier, Mini Apps version, etc.">Launch Parameters</Cell>
+        </a>
+        <a href="/theme-params">
+          <Cell subtitle="Telegram application palette information">Theme Parameters</Cell>
+        </a>
+      </Section>
+    </List>
   );
-}
+};
 
 export default App;
