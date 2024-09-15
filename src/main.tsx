@@ -3,9 +3,10 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import "@telegram-apps/telegram-ui/dist/styles.css";
+import { AppRoot } from "@telegram-apps/telegram-ui";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  <AppRoot>
     <App />
-  </StrictMode>
+  </AppRoot>
 );
