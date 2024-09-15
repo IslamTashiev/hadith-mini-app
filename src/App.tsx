@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [user, setUser] = useState<TelegramWebAppUser | null>(null);
   useEffect(() => {
     if (window.Telegram?.WebApp) {
       const { WebApp } = window.Telegram;
@@ -14,6 +15,7 @@ function App() {
 
       // Получение данных пользователя
       const user = WebApp.initDataUnsafe?.user;
+      setUser(user);
       console.log("Current user:", user);
 
       // Показать основной текст
@@ -28,6 +30,7 @@ function App() {
   return (
     <div>
       <h1>Welcome to Telegram Mini App!</h1>
+      {JSON.stringify(user, null, 2)}
     </div>
   );
 }
